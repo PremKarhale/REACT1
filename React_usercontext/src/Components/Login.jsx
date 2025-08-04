@@ -9,19 +9,7 @@ function Login() {
 
     const handlesubmit = (e) => {
         e.preventDefault()
-        
-        if(!username){
-            setUser('Enter username first')
-           return
-        }if(!pass) {
-            setUser('Enter the passoword')
-            
-        }   
-        
-        else{
-            setUser({ username, pass })
-
-        }   
+        setUser({ username, pass })
     }
 
     return (

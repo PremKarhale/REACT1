@@ -11,11 +11,6 @@ function Profile() {
    if (typeof user === 'string') {
        <div>{user}</div>  // Shows "enter username first"
     }
-
-    if(typeof user.pass === 'string'  ){
-         <div>{user}</div>
-    }
-
     return <div>welcome {user.username}</div>
 }
 
