@@ -2,7 +2,7 @@ import { createContext,useContext } from "react";
 
 
 export const Todocontext = createContext({
-    todo:[
+    todos:[
         {
             id:1,
             todo : "Todo msg",
