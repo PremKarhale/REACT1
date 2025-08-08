@@ -1,8 +1,11 @@
-import { useState } from 'react'
+import { useState ,useEffect } from 'react'
 import './App.css'
 import { Todoprovider } from './contexts'
+import { TodoForm, TodoItem } from './Components'
 
 function App() {
+
+  // todos is a array of all the todos 
   const [todos, settodo] = useState([])
 
   const addTodo =(todo)=>{
@@ -14,12 +17,25 @@ function App() {
     settodo((prev)=>prev.map((prevTodos)=>(prevTodos.id === id ? todo : prevTodos)))
 
   }
-  const deleteTodo = ()=>{
-    settodo((prev)=>prev.filter((todo)=>(todo.id !== id ))) //filter jo hota hai vo sirf true ya false value leta hai 
+  const deleteTodo = (id)=>{
+    //filter jo hota hai vo sirf true ya false value leta hai 
+    settodo((prev)=>prev.filter((todo)=>(todo.id !== id ))) //jo todo.id  , id ke equal nahi he unko rako bakiyo ko delete kardo 
   }
   const Togglecomplete = (id)=>{
     settodo((prev)=>prev.map((todo)=>(todo.id === id ? {...todo , completed: !todo.completed} : todo)))
   }
+
+  useEffect(()=>{
+    const todos=JSON.parse(localStorage.getItem("todos"))
+    if(todos && todos.length>0){
+      settodo(todos)
+    }
+  },[])
+
+  useEffect(() => {
+    localStorage.setItem("todos" , JSON.stringify(todos) )
+  },[todos])
+  
 
 
   return (
@@ -30,9 +46,19 @@ function App() {
           <h1 className="text-2xl font-bold text-center mb-8 mt-2">Manage Your Todos</h1>
           <div className="mb-4">
             {/* Todo form goes here */}
+            <TodoForm/>
           </div>
           <div className="flex flex-wrap gap-y-3">
             {/*Loop and Add TodoItem here */}
+           {
+            todos.map((todo)=>(
+              <div key={todo.id}
+              className='w-full'>
+                 <TodoItem todo={todo}/>
+              </div>
+
+            ))
+           }
           </div>
         </div>
       </div>
