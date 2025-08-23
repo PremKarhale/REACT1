@@ -19,7 +19,7 @@ function App() {
   }
   const deleteTodo = (id)=>{
     //filter jo hota hai vo sirf true ya false value leta hai 
-    settodo((prev)=>prev.filter((todo)=>(todo.id !== id ))) //jo todo.id  , id ke equal nahi he unko rako bakiyo ko delete kardo 
+    settodo((prev)=>prev.filter((todo)=>(todo.id !== id ))) // if  todo.id !== id unko rako unko hi (filter karo ) bakiyo ko delete kardo 
   }
   const Togglecomplete = (id)=>{
     settodo((prev)=>prev.map((todo)=>(todo.id === id ? {...todo , completed: !todo.completed} : todo)))
