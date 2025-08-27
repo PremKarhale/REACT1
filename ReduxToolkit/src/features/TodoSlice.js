@@ -2,7 +2,7 @@ import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 //created one obj name initial state 
 const initialState = {
-    Todo: [{ id: 1, text: "hello world " }]    //this is my STATE
+    todos: [{ id: 1, text: "hello world " }]    //this is my STATE
 }
 
 // function sayhello(){
@@ -18,14 +18,14 @@ export const todoSlice = createSlice({
                 id: nanoid(),      //todo create kiya
                 text: action.payload
             }
-            state.Todo.push(todo)
+            state.todos.push(todo)
 
         },
         removetodo: (state, action) => {
-            state.Todo = state.Todo.filter((todo) => todo.id != action.payload)
+            state.todos= state.todos.filter((todo) => todo.id != action.payload)
         },
         updatetodo: (state, action) => {
-            state.Todo = state.Todo.map((todo) => todo.id == action.payload.id ? { ...todo, text: action.payload.text } : todo)
+            state.todos= state.todos.map((todo) => todo.id == action.payload.id ? { ...todo, text: action.payload.text } : todo)
         }
 
     }
