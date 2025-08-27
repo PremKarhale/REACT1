@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addtodo } from '../features/TodoSlice'
+import Todo from './Todo'
 
 function Addtodo() {
     const [input, setInput] = useState('')
@@ -8,6 +9,7 @@ function Addtodo() {
 
     const addTodoHandler = (e) => {
         e.preventDefault()
+        if(!input)return
         dispatch(addtodo(input))  // all the input values are stored as the object in the payload and retrive form action.payload 
         setInput('')
     }
