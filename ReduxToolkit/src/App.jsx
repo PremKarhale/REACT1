@@ -1,14 +1,18 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+
 import viteLogo from '/vite.svg'
 import './App.css'
+import Todo from './component/Todo'
+import Addtodo from './component/Addtodo'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <h2>start learning reduxToolkit</h2>
+    <div className='text-4xl font-bold'>learn about redux toolKit</div>
+      <Addtodo />
+      <Todo />
     </>
   )
 }
