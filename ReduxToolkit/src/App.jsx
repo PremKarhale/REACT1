@@ -6,13 +6,20 @@ import Todo from './component/Todo'
 import Addtodo from './component/Addtodo'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [editTodo, setEditTodo] = useState('')
+  const handleEdit = (todo) => {
+    setEditTodo(todo)
+  }
 
+  const handelCancelEdit = () => {
+    setEditTodo('')
+  }
   return (
     <>
-    <div className='text-4xl font-bold'>learn about redux toolKit</div>
-      <Addtodo />
-      <Todo />
+      <div className='text-4xl font-bold'>learn about redux toolKit</div>
+      <Addtodo editTodo={editTodo}
+        onCancelEdit={handelCancelEdit} />
+      <Todo onEdit={handleEdit} />
     </>
   )
 }
