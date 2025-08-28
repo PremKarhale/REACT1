@@ -1,27 +1,29 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { removetodo, updatetodo } from '../features/TodoSlice.js'
+import { removetodo } from '../features/TodoSlice.js'
 
 
-function Todo() {
+function Todo({ onEdit }) {
     const todos = useSelector((state) => state.Todo.todos) //callback function lega or usme state.Todo
     const dispatch = useDispatch()
+    const handelEdit = (todo) => {
+        onEdit(todo)
+    }
 
-
-        return (
+    return (
         <>
 
 
             {/*{
-        todos.map((todo) => (
-            <li key={todo.id}>
-                {todo.text}
-                <button onClick={() => dispatch(removetodo(todo.id))}>   // use callback in the usetodo  
-                    X
-                </button>
-            </li>
-        ))
-        } */
+todos.map((todo) => (
+    <li key={todo.id}>
+        {todo.text}
+        <button onClick={() => dispatch(removetodo(todo.id))}>   // use callback in the usetodo  
+            X
+        </button>
+    </li>
+))
+} */
             }
 
             <ul className="list-none">
@@ -34,8 +36,12 @@ function Todo() {
                             <div className='text-white'>{todo.text}</div>
                         </div>
                         <div className='flex items-center justify-center gap-4'>
-                            <button className='text-white text-2xl bg-red-600 w-10 flex align-center justify-center rounded px-4' onClick={()=>dispatch(updatetodo())}>
-                                x
+                            <button
+                                className='text-white text-2xl bg-blue-600 w-10 flex items-center justify-center rounded px-4 hover:bg-blue-700'
+                                onClick={() => handelEdit(todo)}
+                                title="Edit Todo"
+                            >
+                                ✏️
                             </button>
                             <button
                                 onClick={() => dispatch(removetodo(todo.id))}
@@ -61,7 +67,7 @@ function Todo() {
                 ))}
             </ul>
         </>
-        )
-        }
+    )
+}
 
 export default Todo
